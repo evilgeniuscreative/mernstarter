@@ -10,7 +10,7 @@ import Navbar from '../../components/Navbar';
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(null);
 
   return (
     <div className="App">
