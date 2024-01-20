@@ -1,5 +1,8 @@
 import { useState } from "react"
 
+// Service
+import { signUp } from '../../utilities/users-service'
+
 const defaultState = {
   name: '',
   email: '',
@@ -37,9 +40,23 @@ export default function SignupForm() {
     setFormData(newFormData)
   }
 
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault();
     console.log('formData', formData)
+    try {
+      // build my payload to match what the api will be storing
+      const payload = { ...formData }
+      // remove any fields that are only used in react
+      delete payload.confirm
+      delete payload.error
+
+      // submit my from to the service
+      const user = await signUp(payload)
+
+      console.log('user', user)
+    } catch (error) {
+      setFormData({ ...formData, error: 'Sign up Failed - Try Again' })
+    }
 
   }
 
