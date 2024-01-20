@@ -5,6 +5,7 @@ const logger = require('morgan');
 
 // should always be on top
 require('dotenv').config();
+require('./config/database');
 
 const app = express();
 
