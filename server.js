@@ -3,6 +3,8 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
+const usersRouter = require('./routes/api/users');
+
 // should always be on top
 require('dotenv').config();
 require('./config/database');
@@ -15,6 +17,9 @@ app.use(express.json());
 
 // Express View setup
 
+
+// ROUTES MIDDLEWARE STARTS HERE:
+app.use('/api/users', usersRouter);
 
 const port = process.env.PORT || 3001
 
